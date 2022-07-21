@@ -59,3 +59,28 @@ body {
   background-color: #30973e;
   transition: 0.5s;
 }
+
+.item-list {
+  background-color: grey;
+}
+
+.item {
+  border: 1px solid black;
+  border-radius: 25px;
+  background-color: #7d94a1;
+  margin-bottom: 5px;
+  font-size: 20px;
+  display: flex;
+  width: 100%;
+  height: 8vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item:hover {
+  background-color: #a4b0b8;
+}
+
+.item-name {
+  padding-right: 2%;
+}
