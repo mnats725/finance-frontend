@@ -20,6 +20,11 @@ body {
   color: rgb(100, 49, 49);
 }
 
+.title h1:hover {
+  color: red;
+  cursor: pointer;
+}
+
 .inputs p {
   margin: 0;
   margin-top: -15px;
@@ -36,7 +41,7 @@ body {
 .inputs input {
   height: 4vh;
   margin-right: 15px;
-  border: 1px solid grey;
+  border: 1px solid rgb(36, 29, 29);
   background-color: #fff;
   border-radius: 4px;
 }
@@ -58,6 +63,8 @@ body {
 .add-btn input:hover {
   background-color: #30973e;
   transition: 0.5s;
+  cursor: pointer;
+  color: white;
 }
 
 .item-list {
@@ -79,8 +86,48 @@ body {
 
 .item:hover {
   background-color: #a4b0b8;
+  transition: 0.5s;
 }
 
 .item-name {
   padding-right: 2%;
+}
+
+.change-name-input {
+  margin-left: 2%;
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+}
+
+.change-number-input {
+  margin-left: 2%;
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+}
+
+.icons {
+  display: flex;
+}
+
+.rename-icon {
+  margin-right: 15px;
+}
+
+.total-sum {
+  text-align: center;
+  height: 60px;
+  width: 150px;
+  border: 1px solid black;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #47856a;
+}
+
+.total-sum:hover {
+  background-color: #30973e;
+  transition: 0.5s;
+  cursor: pointer;
 }
