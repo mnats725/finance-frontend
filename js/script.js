@@ -11,6 +11,8 @@ let changeSpendNumberInput = "";
 
 let changeSpendNameValue = "";
 let changeSpendNumberValue = "";
+let changeSpendDateValue = "";
+
 let editorOpened = false;
 let spendSumCount = 0;
 
@@ -90,8 +92,10 @@ const updateSpendSumCount = () => {
 const onRename = (index) => {
   if (changeSpendNameValue === "" || changeSpendNameValue === " ") return;
   editorOpened = false;
+  console.log(changeSpendNameValue);
   allSpends[index].spendName = changeSpendNameValue;
   allSpends[index].spendValue = changeSpendNumberValue;
+  allSpends[index].spendDate = changeSpendDateValue;
   allSpends[index].isEditing = false;
   renderSpendSum();
   render();
@@ -142,7 +146,19 @@ const render = () => {
 
     const spendDate = document.createElement("div");
     spendDate.className = "item_date";
-    spendDate.innerText = currentDate;
+    spendDate.innerText = allSpends[index].spendDate;
+
+    const changeDateForm = document.createElement("input");
+    changeDateForm.className = "change-date-input";
+    changeDateForm.placeholder = "Введите новую дату";
+    changeDateForm.value = allSpends[index].spendDate;
+    changeSpendDateValue = allSpends[index].spendDate;
+
+    const updateSpendDateValue = (event) => {
+      changeSpendDateValue = event.target.value;
+    };
+
+    changeDateForm.addEventListener("change", updateSpendDateValue);
 
     const spendValue = document.createElement("div");
     spendValue.className = "item_sum";
@@ -150,6 +166,7 @@ const render = () => {
 
     const changeNumberForm = document.createElement("input");
     changeNumberForm.className = "change-number-input";
+    changeNumberForm.type = "number";
     changeNumberForm.placeholder = "Введите новую сумму";
     changeNumberForm.value = allSpends[index].spendValue;
     changeSpendNumberValue = allSpends[index].spendValue;
@@ -187,14 +204,15 @@ const render = () => {
     container.appendChild(spendValue);
     container.appendChild(storageIcons);
 
-    storageIcons.appendChild(deleteIcon);
     storageIcons.appendChild(renameIcon);
+    storageIcons.appendChild(deleteIcon);
 
     content.appendChild(container);
 
     if (item.isEditing) {
       spendName.replaceWith(changeNameForm);
       spendValue.replaceWith(changeNumberForm);
+      spendDate.replaceWith(changeDateForm);
       storageIcons.removeChild(renameIcon);
       storageIcons.removeChild(deleteIcon);
       storageIcons.appendChild(doneIcon);

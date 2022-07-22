@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #63757f;
+  background-color: #323032;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -17,7 +17,7 @@ body {
 }
 
 .title h1 {
-  color: rgb(100, 49, 49);
+  color: #fff;
 }
 
 .title h1:hover {
@@ -54,14 +54,23 @@ body {
   width: 90%;
 }
 
+.input-name p {
+  color: #fff;
+}
+
+.input-number p {
+  color: #fff;
+}
+
 .add-btn input {
   height: 4.5vh;
   width: 90%;
-  background-color: #47856a;
+  background-color: #306997;
+  color: #fff;
 }
 
 .add-btn input:hover {
-  background-color: #30973e;
+  background-color: #5386b1;
   transition: 0.5s;
   cursor: pointer;
   color: white;
@@ -74,7 +83,7 @@ body {
 .item {
   border: 1px solid black;
   border-radius: 25px;
-  background-color: #7d94a1;
+  background-color: #306997;
   margin-bottom: 5px;
   font-size: 20px;
   display: flex;
@@ -82,10 +91,12 @@ body {
   height: 8vh;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .item:hover {
-  background-color: #a4b0b8;
+  background-color: #2a6392;
+  color: #fff;
   transition: 0.5s;
 }
 
@@ -101,6 +112,13 @@ body {
 }
 
 .change-number-input {
+  margin-left: 2%;
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+}
+
+.change-date-input {
   margin-left: 2%;
   width: 300px;
   height: 30px;
@@ -123,11 +141,82 @@ body {
   font-size: 20px;
   display: flex;
   justify-content: center;
-  background-color: #47856a;
+  background-color: #477485;
+  border-radius: 20px;
 }
 
 .total-sum:hover {
-  background-color: #30973e;
+  background-color: #2a6392;
   transition: 0.5s;
   cursor: pointer;
+  color: white;
+}
+
+@media screen and (max-width: 900px) {
+  .item {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .inputs {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .list {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .item {
+    height: 10vh;
+    max-height: 80px;
+    font-size: 0.8rem;
+  }
+
+  .changeSpendInput {
+    width: 20%;
+    height: 25%;
+  }
+
+  .item-date {
+    padding-right: 5%;
+  }
+
+  .input-name {
+    margin-bottom: 5%;
+  }
+
+  .input-name input {
+    width: 80vw;
+  }
+
+  .input-number input {
+    margin-bottom: 5%;
+    width: 80vw;
+  }
+
+  .add-btn {
+    margin-left: 55%;
+  }
+
+  .add-btn input {
+    height: 4vh;
+    width: 30vw;
+  }
+
+  .total-sum {
+    font-size: 20px;
+    margin-right: 12%;
+    display: flex;
+  }
+
+  .img img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
