@@ -1,4 +1,4 @@
-const allSpends = [];
+let allSpends = [];
 
 let nameInput = "";
 let nameInputValue = "";
@@ -18,29 +18,44 @@ let spendSumCount = 0;
 
 const currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
 
+const getAllSpends = async () => {
+  const response = await fetch("http://localhost:7000/AllSpends", {
+    method: "GET",
+  });
+
+  const result = await response.json();
+  allSpends = result;
+};
+
 window.onload = init = async () => {
   nameInput = document.getElementById("spend-name");
   numberInput = document.getElementById("spend-number");
 
   nameInput.addEventListener("change", updateNameValue);
   numberInput.addEventListener("change", updateNumberValue);
-
+  await getAllSpends();
   renderSpendSum();
   render();
 };
 
-const addNewSpend = () => {
+const addNewSpend = async () => {
   if (nameInputValue === "" || nameInputValue === " ") return;
   if (numberInputValue <= 0) return;
-  allSpends.push({
-    spendName: nameInputValue,
-    spendValue: numberInputValue,
-    spendDate: currentDate,
-    isEditing: false,
+  await fetch("http://localhost:7000/createSpend", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      spendName: nameInputValue,
+      spendValue: numberInputValue,
+    }),
   });
+  await getAllSpends();
+
   nameInput.value = "";
   numberInput.value = "";
-
   nameInputValue = "";
   numberInputValue = "";
   renderSpendSum();
@@ -51,8 +66,12 @@ const mainContent = document.getElementById("main-content");
 const spendSum = document.createElement("p");
 const spendSumText = document.createElement("p");
 
-const deleteSpend = (index) => {
-  delete allSpends[index];
+const deleteSpend = async (index) => {
+  await fetch(`http://localhost:7000/deleteSpend?_id=${allSpends[index]._id}`, {
+    method: "DELETE",
+  });
+
+  await getAllSpends();
 
   editorOpened = false;
   renderSpendSum();
@@ -89,14 +108,25 @@ const updateSpendSumCount = () => {
     : (spendSumText.innerText = "Нет трат");
 };
 
-const onRename = (index) => {
+const onRename = async (index) => {
   if (changeSpendNameValue === "" || changeSpendNameValue === " ") return;
+
+  await fetch(`http://localhost:7000/editSpend?_id=${allSpends[index]._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      spendName: changeSpendNameValue,
+      spendValue: changeSpendNumberValue,
+      spendDate: changeSpendDateValue,
+    }),
+  });
+
   editorOpened = false;
-  console.log(changeSpendNameValue);
-  allSpends[index].spendName = changeSpendNameValue;
-  allSpends[index].spendValue = changeSpendNumberValue;
-  allSpends[index].spendDate = changeSpendDateValue;
   allSpends[index].isEditing = false;
+  await getAllSpends();
   renderSpendSum();
   render();
 };
