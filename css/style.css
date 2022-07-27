@@ -6,8 +6,8 @@ body {
 }
 
 .content {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 9%;
+  margin-right: 9%;
 }
 
 .title {
@@ -136,7 +136,7 @@ body {
 .total-sum {
   text-align: center;
   height: 60px;
-  width: 150px;
+  width: 13%;
   border: 1px solid black;
   font-size: 20px;
   display: flex;
@@ -155,6 +155,27 @@ body {
 @media screen and (max-width: 900px) {
   .item {
     font-size: 0.8rem;
+  }
+
+  .change-name-input {
+    margin-left: 2%;
+    width: 20%;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .change-number-input {
+    margin-left: 2%;
+    width: 20%;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .change-date-input {
+    margin-left: 2%;
+    width: 20%;
+    height: 30px;
+    font-size: 16px;
   }
 }
 

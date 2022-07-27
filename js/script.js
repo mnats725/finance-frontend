@@ -181,6 +181,7 @@ const render = () => {
     const changeDateForm = document.createElement("input");
     changeDateForm.className = "change-date-input";
     changeDateForm.placeholder = "Введите новую дату";
+    changeDateForm.type = "date";
     changeDateForm.value = allSpends[index].spendDate;
     changeSpendDateValue = allSpends[index].spendDate;
 
